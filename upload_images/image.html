@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (head content) ... -->
+</head>
+<body>
+    <div>
+        <h1>Upload Image</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="image">Choose Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit">Upload Image</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div>
+        <h1>Display Image</h1>
+        <!-- Display the uploaded image based on its name -->
+        <label for="imageName">Enter Image Name:</label>
+        <input type="text" id="imageName" name="imageName" required>
+        <button onclick="displayImage()">Display Image</button>
+        <br>
+        <img id="displayedImage" alt="Displayed Image" width="300">
+    </div>
+
+    <script>
+        function displayImage() {
+            const imageName = document.getElementById('imageName').value;
+            const displayedImage = document.getElementById('displayedImage');
+            displayedImage.src = `/images/${imageName}`;
+        }
+    </script>
+</body>
+</html>

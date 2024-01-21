@@ -1,0 +1,61 @@
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .welcome-message {
+            display: inline-block;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="welcome-message">
+        <script>
+            // Check user login status
+            fetch('/checkLogin')
+                .then(response => response.json())
+                .then(data => {
+                    const welcomeMessageElement = document.querySelector('.welcome-message');
+                    if (data.loggedIn) {
+                        welcomeMessageElement.textContent = `Welcome, ${data.username}!`;
+                    } else {
+                        welcomeMessageElement.textContent = 'You are not logged in.';
+                    }
+                })
+                .catch(error => console.error('Error checking login status:', error));
+        </script>
+    </div>
+</header>
+
+<!-- Your page content goes here -->
+
+<div>
+    <h1>Welcome to the Home Page</h1>
+
+    <div>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+</body>
+</html>
